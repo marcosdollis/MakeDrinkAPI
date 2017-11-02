@@ -12,5 +12,6 @@
     <mapping class="model.Usuario"/>
     <mapping class="model.Produto"/>
     <mapping class="model.Ingredientes"/>
+    <mapping class="model.Producao"/>
   </session-factory>
 </hibernate-configuration>

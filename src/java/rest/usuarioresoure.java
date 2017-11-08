@@ -10,11 +10,14 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
+import model.Producao;
 import model.Usuario;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
@@ -81,7 +84,30 @@ public List<Usuario> lista_user(){
         
         return logado;
         
+    }
+    
+    @DELETE
+    @Path("/{id}")
+    public void delete(final @PathParam("id") String id, Usuario usuario) {
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.getTransaction().begin();
+        session.delete(id);
+        session.getTransaction().commit();
+        session.close();
         
     }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void update(Usuario usuario) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.getTransaction().begin();
+        session.merge(usuario);
+        session.getTransaction().commit();
+        session.close();
+    }
+    
+    
     
 }

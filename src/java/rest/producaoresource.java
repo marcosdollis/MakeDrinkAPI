@@ -51,26 +51,26 @@ public class producaoresource {
         session.getTransaction().commit();
         session.close();
     }
-    
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-public List<Producao> lista_producao(){
-   Session session = HibernateUtil.getSessionFactory().openSession();
-   List<Producao> lista = session.createQuery("From Producao").list();
-   return lista;
-    
-}
+    public List<Producao> lista_producao() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Producao> lista = session.createQuery("From Producao").list();
+        return lista;
+
+    }
 
     @DELETE
     @Path("/{id}")
     public void delete(final @PathParam("id") String id) {
-        
+
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
         session.delete(id);
         session.getTransaction().commit();
         session.close();
-        
+
     }
 
     @PUT
@@ -82,6 +82,5 @@ public List<Producao> lista_producao(){
         session.getTransaction().commit();
         session.close();
     }
-
 
 }

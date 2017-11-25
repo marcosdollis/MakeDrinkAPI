@@ -36,7 +36,7 @@ public class produtoresource {
 
     public produtoresource() {
     }
-    
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void save(Produto produto) {
@@ -51,23 +51,23 @@ public class produtoresource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-public List<Produto> lista_user(){
-   Session session = HibernateUtil.getSessionFactory().openSession();
-   List<Produto> lista = session.createQuery("From Produto").list();
-   return lista;
-    
-}
+    public List<Produto> lista_user() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Produto> lista = session.createQuery("From Produto").list();
+        return lista;
 
-@DELETE
+    }
+
+    @DELETE
     @Path("/{id}")
     public void delete(final @PathParam("id") String id) {
-        
+
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
         session.delete(id);
         session.getTransaction().commit();
         session.close();
-        
+
     }
 
     @PUT
@@ -79,8 +79,5 @@ public List<Produto> lista_user(){
         session.getTransaction().commit();
         session.close();
     }
-    
-    
-    
 
 }

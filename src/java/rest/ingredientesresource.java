@@ -42,24 +42,23 @@ public class ingredientesresource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-public List<Ingredientes> lista_user(){
-   Session session = HibernateUtil.getSessionFactory().openSession();
-   List<Ingredientes> lista = session.createQuery("From Ingredientes").list();
-   return lista;
-    
-}
+    public List<Ingredientes> lista_user() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Ingredientes> lista = session.createQuery("From Ingredientes").list();
+        return lista;
 
+    }
 
     @DELETE
     @Path("/{id}")
     public void delete(final @PathParam("id") String id) {
-        
+
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
         session.delete(id);
         session.getTransaction().commit();
         session.close();
-        
+
     }
 
     @PUT
@@ -71,6 +70,5 @@ public List<Ingredientes> lista_user(){
         session.getTransaction().commit();
         session.close();
     }
-
 
 }

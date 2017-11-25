@@ -53,49 +53,49 @@ public class usuarioresoure {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-public List<Usuario> lista_user(){
-   Session session = HibernateUtil.getSessionFactory().openSession();
-   List<Usuario> lista = session.createQuery("From Usuario").list();
-   return lista;
-    
-}
-    
-@GET
+    public List<Usuario> lista_user() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Usuario> lista = session.createQuery("From Usuario").list();
+        return lista;
+
+    }
+
+    @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("login")
-    public Usuario login(Usuario u){
+    public Usuario login(Usuario u) {
         Usuario logado = new Usuario();
         Session session = HibernateUtil.getSessionFactory().openSession();
         String query = "from Usuario as u where u.email = :a and u.senha = :b";
         Query q = session.createQuery(query);
         q.setParameter("a", u.getEmail());
         q.setParameter("b", u.getSenha());
-        
+
         logado = (Usuario) q.uniqueResult();
-        
-        if(logado != null){
+
+        if (logado != null) {
             logado.setAutenticado(true);
-            
-        }else{
+
+        } else {
             logado = new Usuario();
-            
+
         }
-        
+
         return logado;
-        
+
     }
-    
+
     @DELETE
     @Path("/{id}")
     public void delete(final @PathParam("id") String id, Usuario usuario) {
-        
+
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
         session.delete(id);
         session.getTransaction().commit();
         session.close();
-        
+
     }
 
     @PUT
@@ -107,7 +107,5 @@ public List<Usuario> lista_user(){
         session.getTransaction().commit();
         session.close();
     }
-    
-    
-    
+
 }

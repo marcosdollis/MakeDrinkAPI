@@ -60,11 +60,10 @@ public class usuarioresoure {
 
     }
 
-    @GET
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)    
     @Path("login")
-    public Usuario login(Usuario u) {
+    public Boolean login(Usuario u) {
         Usuario logado = new Usuario();
         Session session = HibernateUtil.getSessionFactory().openSession();
         String query = "from Usuario as u where u.email = :a and u.senha = :b";
@@ -76,14 +75,11 @@ public class usuarioresoure {
 
         if (logado != null) {
             logado.setAutenticado(true);
-
+            return true;
         } else {
-            logado = new Usuario();
-
+            //logado = new Usuario();
+            return false;
         }
-
-        return logado;
-
     }
 
     @DELETE

@@ -51,23 +51,20 @@ public class produtoresource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Produto> lista_user() {
+    public List<Produto> lista_produtos() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<Produto> lista = session.createQuery("From Produto").list();
         return lista;
-
     }
 
     @DELETE
     @Path("/{id}")
-    public void delete(final @PathParam("id") String id) {
-
+    public void delete(final @PathParam("id") int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
         session.delete(id);
         session.getTransaction().commit();
         session.close();
-
     }
 
     @PUT

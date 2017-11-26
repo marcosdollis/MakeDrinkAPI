@@ -6,14 +6,20 @@
 package model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 @Entity
+@SequenceGenerator(name = "seq_produto", sequenceName = "seq_produto", allocationSize = 1)
 public class Produto {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_produto")
     private int id;
     private String nome_produto;
+    private String descricao_produto;
     private double quantidade_desejada;
 
     public int getId() {
@@ -38,6 +44,14 @@ public class Produto {
 
     public void setQuantidade_desejada(double quantidade_desejada) {
         this.quantidade_desejada = quantidade_desejada;
+    }
+
+    public String getDescricao_produto() {
+        return descricao_produto;
+    }
+
+    public void setDescricao_produto(String descricao_produto) {
+        this.descricao_produto = descricao_produto;
     }
     
 }

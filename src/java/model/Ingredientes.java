@@ -14,7 +14,15 @@ public class Ingredientes {
     private String nome_ingrediente;
     private Double quantidade_ingrediente_por_unidade;
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Produto> recVagaList;
+    private List<Produto> produtos;
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
 
     public int getId() {
         return id;
@@ -40,12 +48,6 @@ public class Ingredientes {
         this.quantidade_ingrediente_por_unidade = quantidade_ingrediente_por_unidade;
     }
 
-    public List<Produto> getRecVagaList() {
-        return recVagaList;
-    }
 
-    public void setRecVagaList(List<Produto> recVagaList) {
-        this.recVagaList = recVagaList;
-    }
 
 }

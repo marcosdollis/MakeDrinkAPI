@@ -5,10 +5,13 @@
  */
 package model;
 
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -21,6 +24,8 @@ public class Produto {
     private String nome_produto;
     private String descricao_produto;
     private double quantidade_desejada;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Ingredientes> ingredientes; 
 
     public int getId() {
         return id;
@@ -52,6 +57,14 @@ public class Produto {
 
     public void setDescricao_produto(String descricao_produto) {
         this.descricao_produto = descricao_produto;
+    }
+
+    public List<Ingredientes> getIngredientes() {
+        return ingredientes;
+    }
+
+    public void setIngredientes(List<Ingredientes> ingredientes) {
+        this.ingredientes = ingredientes;
     }
     
 }

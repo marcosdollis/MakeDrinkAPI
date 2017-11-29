@@ -13,7 +13,7 @@ public class Producao {
     @Id
     private int id;
     private int ordem_producao;
-    private int protocolo;
+    private int quantidade;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date data_criacao;
     @ManyToOne
@@ -38,11 +38,11 @@ public class Producao {
     }
 
     public int getProtocolo() {
-        return protocolo;
+        return quantidade;
     }
 
     public void setProtocolo(int protocolo) {
-        this.protocolo = protocolo;
+        this.quantidade = protocolo;
     }
 
     public Date getData_criacao() {
